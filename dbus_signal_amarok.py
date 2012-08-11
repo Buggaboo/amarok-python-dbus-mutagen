@@ -10,14 +10,13 @@ def print_metadata_and_id3(metadata):
   from mutagen.id3 import ID3NoHeaderError
   try:
     tags = EasyID3(metadata['location'][7:].replace('%20', ' '))
+    for k in tags.keys():
+      print 'id3 > ' + k + ':', tags[k]
+    tags.pprint()
   except ID3NoHeaderError:
     print "No ID3 tags available."
-    import sys
-    sys.exit(1)
-
-  for k in tags.keys():
-    print 'id3 > ' + k + ':', tags[k]
-  tags.pprint()
+#    import sys
+#    sys.exit(1)
 
 
 def main(av):
