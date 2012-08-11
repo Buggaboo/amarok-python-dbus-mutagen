@@ -9,7 +9,8 @@ def print_metadata_and_id3(metadata):
   from mutagen.easyid3 import EasyID3
   from mutagen.id3 import ID3NoHeaderError
   try:
-    tags = EasyID3(metadata['location'][7:].replace('%20', ' '))
+    import urllib
+    tags = EasyID3(urllib.unquote(metadata['location'][7:]))
     for k in tags.keys():
       print 'id3 > ' + k + ':', tags[k]
     tags.pprint()

@@ -14,7 +14,8 @@ def main(av):
   from mutagen.easyid3 import EasyID3
   from mutagen.id3 import ID3NoHeaderError
   try:
-    tags = EasyID3(metadata['location'][7:].replace('%20', ' '))
+    import urllib
+    tags = EasyID3(urllib.unquote(metadata['location'][7:]))
   except ID3NoHeaderError:
     print "No ID3 tags available."
     import sys
