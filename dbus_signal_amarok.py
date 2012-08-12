@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-
 def print_metadata_and_id3(metadata):
 
   for k in metadata.keys():
@@ -16,9 +15,9 @@ def print_metadata_and_id3(metadata):
     tags.pprint()
   except ID3NoHeaderError:
     print "No ID3 tags available."
-#    import sys
-#    sys.exit(1)
-
+  except KeyException:    
+    import sys
+    sys.exit(1)
 
 def main(av):
   # list interfaces:        qdbus org.kde.amarok
@@ -40,5 +39,3 @@ def main(av):
 if __name__ == '__main__':
   from sys import argv as av
   main(av)
-
-
